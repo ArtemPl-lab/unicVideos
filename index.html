@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Онлайн видео-конвертер</title>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <a href="#">
+                <img src="./images/svg/logo.svg" alt="Логотип" class="header__logo">
+            </a>
+        </div>
+    </header>
+    <main class="main">
+        <section class="file-drop">
+            <div class="container">
+                <h1 class="page-title">
+                    Онлайн видео-конвертер
+                </h1>
+                <div class="page-desc">
+                    Конвертер MP4 позволяет вам легко конвертировать видеофайлы в формат MP4. Для он-лайн конвертирования видеофайла в формат MPEG4 загрузите видеофайл или укажите на него ссылку. Высококачественный конвертер MP4 оптимизирован для получения файлов высокого качества. <br> Он, кроме того, бесплатен
+                </div>
+                <div class="drop-zone" id="drop-zone1">
+                    <div class="drop-zone__content" id="content1" style="display: flex;">
+                        <div class="drop-zone__title">
+                            Перетащите файлы сюда
+                        </div>
+                        <div class="drop-zone__desc">
+                            или
+                        </div>
+                        <div class="drop-zone__file-input">
+                            <label for="drop-zone__file" class="drop-zone__file-input-btn">Выберите файл</label>
+                            <input type="file" name="drop-zone__file" id="drop-zone__file" class="drop-zone__file">
+                        </div>
+                    </div>
+                    <div class="drop-zone__content" id="content2" style="display: none;">
+                        <p class="loader-title">Выполняется конвертирование</p>
+                        <p class="loader-desc">Подождите, пожалуйста, мы работаем с вашим файлом...</p>
+                        <div class="loader-line" style="--load: 0%;" id="loader">
+                            <div>Ожидание обработки...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="form-section">
+            <div class="container">
+                <form class="form" id="form">
+                    <button class="start-converting-btn" type="submit">
+                        Начать конвертирование
+                    </button>
+                    <div class="form-row">
+                        <h3 class="form-title">Настройки видео</h3>
+                    </div>
+                    <!-- <div class="form-row">
+                        <div class="form-col-sm">
+                            <div class="input-label">Сохраненные настройки</div>
+                            <div class="inp-desc">Выберите предустановку:</div>
+                            <div class="custom-dropdown">
+                                <div class="custom-dropdown__btn" tabindex="0" outfor="random_noise_type">
+                                    Предустановок нет
+                                </div>
+                                <div class="custom-dropdown__drop-block">
+                                    <input type="radio" name="random_noise_type" id="el1" class="custom-dropdown__checkbox" value="uniform">
+                                    <label for="el1" class="custom-dropdown__checkbox-label">NOISE_UNIFORM</label>
+
+                                    <input type="radio" name="random_noise_type" id="el2" class="custom-dropdown__checkbox" value="gauss">
+                                    <label for="el2" class="custom-dropdown__checkbox-label">NOISE_GAUSSIAN</label>
+
+                                    <input type="radio" name="random_noise_type" id="el5" class="custom-dropdown__checkbox" value="laplace">
+                                    <label for="el5" class="custom-dropdown__checkbox-label">NOISE_LAPLACIAN</label>
+
+                                    <input type="radio" name="random_noise_type" id="el6" class="custom-dropdown__checkbox" value="poisson">
+                                    <label for="el6" class="custom-dropdown__checkbox-label">NOISE_POISSON</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-col-sm"></div>
+                    </div> -->
+                    <div class="form-row">
+                        <div class="input-label">Изменить размеры экрана:</div>
+                        <div class="form-col-2" style="margin-left: 0; padding-top: 5px;">
+                            <div class="inp-desc">Ширина</div>
+                            <input type="number" name="blur_radius">
+                        </div>
+                        <div class="form-col-1" style="padding-bottom: 25px;">
+                            <div style="display: flex; align-items: flex-end; height: 100%;">
+                                X
+                            </div>
+                        </div>
+                        <div class="form-col-2" style="padding-top: 5px;">
+                            <div class="inp-desc">Высота</div>
+                            <input type="number" name="blur_radius">
+                        </div>
+                        <div class="form-col-sm">
+                            <div class="input-label">Работа с размером:</div>
+                            <div class="custom-dropdown">
+                                <div class="custom-dropdown__btn" tabindex="0" outfor="scale_method">
+                                    Сохранить оригинальное соотношение сторон
+                                </div>
+                                <div class="custom-dropdown__drop-block">
+                                    <input type="radio" name="scale_method" id="scale_method1" class="custom-dropdown__checkbox" value="scale_method1" checked>
+                                    <label for="scale_method1" class="custom-dropdown__checkbox-label">Сохранить оригинальное соотношение сторон</label>
+
+                                    <input type="radio" name="scale_method" id="stretch" class="custom-dropdown__checkbox" value="stretch">
+                                    <label for="stretch" class="custom-dropdown__checkbox-label">Если нужно, растяните</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-col-2" style="margin-left: 0; padding-top: 5px;">
+                            <div class="input-label">Изменить битрейт видео:</div>
+                            <input type="number" name="vbitrate" placeholder="5 - 50000">
+                        </div>
+                        <div class="form-col-1" style="padding-bottom: 25px; margin-left: 8px;">
+                            <div style="display: flex; align-items: flex-end; height: 100%;">
+                                <div class="inp-desc" style="white-space: nowrap;">kbps &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                            </div>
+                        </div>
+                        <div class="form-col-2" style="padding-top: 5px;">
+                            <div class="input-label">Указать размер файла:</div>
+                            <input type="number" name="target_filesize" placeholder="5 - 50000">
+                        </div>
+                        <div class="form-col-1" style="padding-bottom: 25px; margin-left: 8px;">
+                            <div style="display: flex; align-items: flex-end; height: 100%;">
+                                <div class="inp-desc">mb</div>
+                            </div>
+                        </div>
+
+                        <div class="form-col-2" style="padding-top: 5px;">
+                            <div class="input-label">Изменить частоту кадров:</div>
+                            <input type="number" name="fps" placeholder="1 - 30">
+                        </div>
+                        <div class="form-col-1" style="padding-bottom: 25px; margin-left: 8px;">
+                            <div style="display: flex; align-items: flex-end; height: 100%;">
+                                <div class="inp-desc" style="white-space: nowrap;">в секунду</div>
+                            </div>
+                        </div>
+                        <div class="form-col-2"></div>
+                    </div>
+                    <div class="form-row">
+                        <div class="input-label">Обрезать видео:</div>
+                        <div class="form-col-2" style="margin-left: 0; padding-top: 5px;">
+                            <input type="time" name="blur_radius" step="1">
+                        </div>
+                        <div class="form-col-1" style="padding-bottom: 25px;">
+                            <div style="display: flex; align-items: flex-end; height: 100%;">
+                                в
+                            </div>
+                        </div>
+                        <div class="form-col-2" style="padding-top: 5px;">
+                            <input type="time" name="blur_radius" step="1">
+                        </div>
+                        <div class="form-col-sm"></div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-col-sm">
+                            <div class="input-label">Повернуть видео (вправо):</div>
+                            <div class="custom-dropdown">
+                                <div class="custom-dropdown__btn" tabindex="0" outfor="rotate">
+                                    Без поворота
+                                </div>
+                                <div class="custom-dropdown__drop-block">
+                                    <input type="radio" name="rotate" id="r0" class="custom-dropdown__checkbox" value="0" checked>
+                                    <label for="r0" class="custom-dropdown__checkbox-label">Без поворота</label>
+
+                                    <input type="radio" name="rotate" id="r1" class="custom-dropdown__checkbox" value="90">
+                                    <label for="r1" class="custom-dropdown__checkbox-label">90&deg;</label>
+
+                                    <input type="radio" name="rotate" id="r2" class="custom-dropdown__checkbox" value="180">
+                                    <label for="r2" class="custom-dropdown__checkbox-label">180&deg;</label>
+
+                                    <input type="radio" name="rotate" id="r3" class="custom-dropdown__checkbox" value="270">
+                                    <label for="r3" class="custom-dropdown__checkbox-label">270&deg;</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-col-sm">
+                            <div class="input-label">Отразить/перевернуть видео:</div>
+                            <div class="custom-dropdown">
+                                <div class="custom-dropdown__btn" tabindex="0" outfor="flip">
+                                    Без изменений
+                                </div>
+                                <div class="custom-dropdown__drop-block">
+                                    <input type="radio" name="flip" id="noflip" class="custom-dropdown__checkbox" value="noflip" checked>
+                                    <label for="noflip" class="custom-dropdown__checkbox-label">Без изменений</label>
+
+                                    <input type="radio" name="flip" id="horizontal" class="custom-dropdown__checkbox" value="horizontal">
+                                    <label for="horizontal" class="custom-dropdown__checkbox-label">Перевернуть горизонтально</label>
+
+                                    <input type="radio" name="flip" id="vertical" class="custom-dropdown__checkbox" value="vertical">
+                                    <label for="vertical" class="custom-dropdown__checkbox-label">Перевернуть вертикально</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-col-sm">
+                            <div class="input-label">Выберите видеокодек:</div>
+                            <div class="custom-dropdown">
+                                <div class="custom-dropdown__btn" tabindex="0" outfor="vcodec">
+                                    h.264
+                                </div>
+                                <div class="custom-dropdown__drop-block">
+                                    <input type="radio" name="vcodec" id="h264" class="custom-dropdown__checkbox" value="h264" checked>
+                                    <label for="h264" class="custom-dropdown__checkbox-label">h.264</label>
+
+                                    <input type="radio" name="vcodec" id="hevc" class="custom-dropdown__checkbox" value="hevc">
+                                    <label for="hevc" class="custom-dropdown__checkbox-label">h.265</label>
+                                    
+                                    <input type="radio" name="vcodec" id="mpeg1video" class="custom-dropdown__checkbox" value="mpeg1video">
+                                    <label for="mpeg1video" class="custom-dropdown__checkbox-label">mpeg1video</label>
+                                                                        
+                                    <input type="radio" name="vcodec" id="mpeg2video" class="custom-dropdown__checkbox" value="mpeg2video">
+                                    <label for="mpeg2video" class="custom-dropdown__checkbox-label">mpeg2video</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-col-sm"></div>
+                    </div>
+ 
+                    <!-- <div class="form-row">
+                        <input type="checkbox" name="water-mark" id="water-mark">
+                        <label for="water-mark" class="checkbox-label">Наложение ватермарка</label>
+                        <div class="form-col-sm">
+                            <div class="inp-desc">.PNG картинка-ватермарк:</div>
+                            <input type="file" name="water-mark-file" id="water-mark-file" class="file-inp">
+                            <label for="water-mark-file" class="file-inp-label">Выберите файл</label>
+                        </div>
+                        <div class="form-col ml-sm-0 mt-sm">
+                            <div class="inp-desc">Расположение по оси X:</div>
+                            <input type="number" name="watermark_x">
+                        </div>
+                        <div class="form-col mt-sm">
+                            <div class="inp-desc">Расположение по оси Y:</div>
+                            <input type="number" name="watermark_y">
+                        </div>
+                    </div> -->
+                    <div class="form-row">
+                        <div class="input-label">Обрежьте пиксели от:</div>
+                        <div class="form-col-2" style="margin-left: 0;">
+                            <div class="inp-desc">Сверху</div>
+                            <input type="number" name="crop_top" value="0" min="0">
+                        </div>
+                        <div class="form-col-2">
+                            <div class="inp-desc">Снизу</div>
+                            <input type="number" name="crop_bottom" value="0" min="0">
+                        </div>
+                        <div class="break-col"></div>
+                        <div class="form-col-2 ml-sm-0">
+                            <div class="inp-desc">Слева</div>
+                            <input type="number" name="crop_left" value="0" min="0">
+                        </div>
+                        <div class="form-col-2">
+                            <div class="inp-desc">Справа</div>
+                            <input type="number" name="crop_right" value="0" min="0">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <input type="checkbox" name="anormalize" id="anormalize">
+                        <label for="anormalize" class="checkbox-label">Устранить дефекты видео</label>
+                    </div>
+                    <div class="form-row">
+                        <h3 class="form-title">Настройки аудио</h3>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-col-sm">
+                            <div class="input-label">Аудиоканал:</div>
+                            <div class="custom-dropdown">
+                                <div class="custom-dropdown__btn" tabindex="0" outfor="achannels">
+                                    Стерео
+                                </div>
+                                <div class="custom-dropdown__drop-block">
+                                    <input type="radio" name="achannels" id="achannels1" class="custom-dropdown__checkbox" value="2" checked>
+                                    <label for="achannels1" class="custom-dropdown__checkbox-label">Стерео</label>
+
+                                    <input type="radio" name="achannels" id="achannels2" class="custom-dropdown__checkbox" value="1">
+                                    <label for="achannels2" class="custom-dropdown__checkbox-label">Моно</label>
+
+                                    <input type="radio" name="achannels" id="achannels3" class="custom-dropdown__checkbox" value="0">
+                                    <label for="achannels3" class="custom-dropdown__checkbox-label">Отключить аудиодорожку</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-col-sm">
+                            <div class="input-label">Изменить качество звука:</div>
+                            <div class="custom-dropdown">
+                                <div class="custom-dropdown__btn" tabindex="0" outfor="abitrate">
+                                    192 kbp
+                                </div>
+                                <div class="custom-dropdown__drop-block">
+                                    <input type="radio" name="abitrate" id="kbps8" class="custom-dropdown__checkbox" value="8">
+                                    <label for="kbps8" class="custom-dropdown__checkbox-label">8 kbps</label>
+
+                                    <input type="radio" name="abitrate" id="kbps16" class="custom-dropdown__checkbox" value="16">
+                                    <label for="kbps16" class="custom-dropdown__checkbox-label">16 kbps</label>
+
+                                    <input type="radio" name="abitrate" id="kbps24" class="custom-dropdown__checkbox" value="24">
+                                    <label for="kbps24" class="custom-dropdown__checkbox-label">24 kbps</label>
+
+                                    <input type="radio" name="abitrate" id="kbps32" class="custom-dropdown__checkbox" value="32">
+                                    <label for="kbps32" class="custom-dropdown__checkbox-label">32 kbps</label>
+                                    
+                                    <input type="radio" name="abitrate" id="kbps48" class="custom-dropdown__checkbox" value="48">
+                                    <label for="kbps48" class="custom-dropdown__checkbox-label">48 kbps</label>
+                                                                        
+                                    <input type="radio" name="abitrate" id="kbps56" class="custom-dropdown__checkbox" value="56">
+                                    <label for="kbps56" class="custom-dropdown__checkbox-label">56 kbps</label>
+                                                                                                            
+                                    <input type="radio" name="abitrate" id="kbps64" class="custom-dropdown__checkbox" value="64">
+                                    <label for="kbps64" class="custom-dropdown__checkbox-label">64 kbps</label>
+                                                                                                                                                
+                                    <input type="radio" name="abitrate" id="kbps96" class="custom-dropdown__checkbox" value="96">
+                                    <label for="kbps96" class="custom-dropdown__checkbox-label">96 kbps</label>
+                                                                                                                                                                                    
+                                    <input type="radio" name="abitrate" id="kbps112" class="custom-dropdown__checkbox" value="112">
+                                    <label for="kbps112" class="custom-dropdown__checkbox-label">112 kbps</label>
+                                                                                                                                                                                                                        
+                                    <input type="radio" name="abitrate" id="kbps128" class="custom-dropdown__checkbox" value="128">
+                                    <label for="kbps128" class="custom-dropdown__checkbox-label">128 kbps</label>
+                                                                                                                                                                                                                                                            
+                                    <input type="radio" name="abitrate" id="kbps160" class="custom-dropdown__checkbox" value="160">
+                                    <label for="kbps160" class="custom-dropdown__checkbox-label">160 kbps</label>
+                                                                                                                                                                                                                                                                                                
+                                    <input type="radio" name="abitrate" id="kbps192" class="custom-dropdown__checkbox" value="192" checked>
+                                    <label for="kbps192" class="custom-dropdown__checkbox-label">192 kbps</label>
+                                                                                                                                                                                                                                                                                                                                    
+                                    <input type="radio" name="abitrate" id="kbps224" class="custom-dropdown__checkbox" value="224">
+                                    <label for="kbps224" class="custom-dropdown__checkbox-label">224 kbps</label>
+                                                                                                                                                                                                                                                                                                                                                                        
+                                    <input type="radio" name="abitrate" id="kbps256" class="custom-dropdown__checkbox" value="256">
+                                    <label for="kbps256" class="custom-dropdown__checkbox-label">256 kbps</label>
+                                                                                                                                                                                                                                                                                                                                                                                                            
+                                    <input type="radio" name="abitrate" id="kbps320" class="custom-dropdown__checkbox" value="320">
+                                    <label for="kbps320" class="custom-dropdown__checkbox-label">320 kbps</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-col-sm">
+                            <div class="input-label">Выберите аудиокодек:</div>
+                            <div class="custom-dropdown">
+                                <div class="custom-dropdown__btn" tabindex="0" outfor="acodec">
+                                    aac
+                                </div>
+                                <div class="custom-dropdown__drop-block">
+                                    <input type="radio" name="acodec" id="aac" class="custom-dropdown__checkbox" value="aac" checked>
+                                    <label for="aac" class="custom-dropdown__checkbox-label">aac</label>
+
+                                    <input type="radio" name="acodec" id="mp3" class="custom-dropdown__checkbox" value="mp3">
+                                    <label for="mp3" class="custom-dropdown__checkbox-label">mp3</label>
+
+                                    <input type="radio" name="acodec" id="mp2" class="custom-dropdown__checkbox" value="mp2">
+                                    <label for="mp2" class="custom-dropdown__checkbox-label">mp2</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-col-sm"></div>
+                    </div>
+                    <div class="form-row">
+                        <input type="checkbox" name="normalize" id="normalize">
+                        <label for="normalize" class="checkbox-label">Нормализовать звук:</label>
+                    </div>
+                    <button type="submit" class="form-submit">Начать конвертирование</button>
+                </form>
+            </div>
+        </section>
+    </main>
+    <script src="./js/lib/dropFiles.js"></script>
+    <script src="./js/lib/customDropdown.js"></script>
+    <script src="./js/lib/colors.js"></script>
+    <script src="./js/main.js"></script>
+</body>
+</html>
