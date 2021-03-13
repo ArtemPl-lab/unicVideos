@@ -724,4 +724,33 @@ input[type="checkbox"]:checked + .checkbox-label::after{
     .drop-zone{
         min-height: 113px;
     }
+    .form-section{
+        top: 25px;
+    }
+    .start-converting-btn{
+        font-style: normal;
+        font-weight: normal;
+        font-size: 15px;
+        line-height: 18px;
+        color: #FFFFFF;
+        padding: 18px 45px;
+    }
+    .form-col-2{
+        /* margin-left: 14px !important; */
+        flex-grow: .45 !important;
+    }
+    
+    .form-col-2 + .form-col-1{
+        margin-left: 14px !important;
+        margin-right: 14px !important;
+    }
+    .form-col-1 + .form-col-2{
+        margin-left: 0 !important;
+    }
+    #full-mobile .form-col-2{
+        flex-basis: 80%;
+    }
+    .mobile-none{
+        display: none;
+    }
 }
